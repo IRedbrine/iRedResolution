@@ -1,0 +1,44 @@
+iRedResolution
+Copyright (c) 2026 iRedHUB / Redbrine. Todos os direitos reservados.
+
+===========================================================
+LICENÇA DE USO — SOFTWARE PROPRIETÁRIO
+===========================================================
+
+Este software e todo o seu código-fonte, design, marca, textos e recursos
+gráficos são propriedade exclusiva de iRedHUB / Redbrine.
+
+É PERMITIDO:
+  - Baixar e usar o programa gratuitamente, para uso pessoal.
+  - Compartilhar o executável original, sem modificação, mantendo os
+    créditos e este arquivo de licença.
+
+É PROIBIDO, sem autorização escrita do autor:
+  - Modificar, descompilar, fazer engenharia reversa ou criar obras
+    derivadas do programa.
+  - Redistribuir sob outro nome, marca ou autoria.
+  - Remover, ocultar ou alterar os avisos de direitos autorais, a marca
+    iRedResolution / iRedHUB ou os créditos.
+  - Usar o código, no todo ou em parte, em outro produto — gratuito ou pago.
+  - Cobrar pelo programa ou incluí-lo em pacotes pagos.
+
+MARCA:
+  "iRedResolution", "iRedHUB", "Redbrine" e a identidade visual associada
+  são marcas de seus respectivos titulares. O uso não autorizado é vedado.
+
+GARANTIA:
+  O software é fornecido "COMO ESTÁ", sem garantias de qualquer natureza,
+  expressas ou implícitas. O autor não se responsabiliza por quaisquer danos
+  decorrentes do uso. O uso é por sua conta e risco.
+
+NATUREZA DO SOFTWARE:
+  O iRedResolution é um utilitário de configuração de vídeo do Windows. NÃO
+  é cheat, hack ou modificação de jogo, e não deve ser distribuído nem
+  apresentado como tal. Qualquer uso do código para criar cheats, malware ou
+  ferramentas de trapaça é expressamente proibido e de inteira
+  responsabilidade de quem o fizer.
+
+CONTATO PARA AUTORIZAÇÕES:
+  iredhub.com  ·  discord.gg/DQ8TzaFGtd
+
+O uso do programa implica a aceitação desta licença.

@@ -1,0 +1,8 @@
+﻿# o executavel vai na Release, nunca no repositorio
+*.exe
+# codigo-fonte fica de fora deste repo (distribuimos so o binario)
+*.cs
+src/
+# lixo
+*.pdb
+Thumbs.db
