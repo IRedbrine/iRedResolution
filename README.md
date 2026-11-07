@@ -4,9 +4,9 @@
 
 # iRedResolution
 
-**Reduza o alt-tab lento do CS2 mantendo a tela cheia exclusiva.**
+**Resolução por jogo, saturação, diagnóstico do PC, CFG do CS2 e medidor de FPS num app só.**
 
-Troca a resolução do monitor *antes* do jogo abrir e restaura ao fechar.
+Troca a resolução do monitor *antes* do jogo abrir e restaura ao fechar, para o alt-tab do CS2 não dar tela preta e você seguir em tela cheia exclusiva.
 
 [![Download](https://img.shields.io/badge/Download-iRedResolution.exe-FF2325?style=for-the-badge)](../../releases/latest)
 [![Windows](https://img.shields.io/badge/Windows-10%20e%2011%20(64%20bits)-1E1E1E?style=for-the-badge&logo=windows)](#requisitos)

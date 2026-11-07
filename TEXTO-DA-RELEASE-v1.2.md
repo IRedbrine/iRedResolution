@@ -1,6 +1,6 @@
 ## iRedResolution 1.2
 
-Troca a resolução da área de trabalho antes do jogo abrir e restaura ao fechar, para reduzir o alt-tab lento do CS2 mantendo a tela cheia exclusiva.
+Resolução por jogo, MODO GC, saturação, OTIMIZAR O PC, CFG DO CS2 e MEDIR FPS num app só. Troca a resolução da área de trabalho antes do jogo abrir e restaura ao fechar, para reduzir o alt-tab lento do CS2 mantendo a tela cheia exclusiva.
 
 ### Correções importantes
 - **Alt-tab:** a resolução agora fica na área de trabalho durante o jogo. A v1.1 podia voltar à resolução anterior e trazer a piscada de volta.
