@@ -29,7 +29,7 @@ Não injeta código, não lê nem escreve na memória do jogo e não quer burlar
 ### Segurança do download
 O hash abaixo é o mesmo que o app mostra na aba INTEGRIDADE:
 
-SHA-256: PREENCHER_COM_O_HASH_DO_EXE_FINAL
+SHA-256: b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d
 
 Análise no VirusTotal: PREENCHER_COM_O_LINK_DO_VIRUSTOTAL
 
