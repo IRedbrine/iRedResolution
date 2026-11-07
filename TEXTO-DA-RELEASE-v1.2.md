@@ -33,7 +33,7 @@ SHA-256: b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d
 
 Análise no VirusTotal (07/11/2026): 1 alerta em 70 mecanismos. Só o Elastic alerta, por heurística; os demais não detectaram nada: https://www.virustotal.com/gui/file/b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d
 
-O Windows pode mostrar "O Windows protegeu o computador", porque o arquivo não tem assinatura paga. Baixe só desta página e confira o hash antes de clicar em "Mais informações" e "Executar assim mesmo".
+O Windows pode mostrar "O Windows protegeu o computador", porque o arquivo não é assinado digitalmente. Baixe só desta página e confira o hash antes de clicar em "Mais informações" e "Executar assim mesmo".
 
 ### Requisitos e testes
 Windows de 64 bits e .NET Framework 4.x, que já vem no Windows 10 e 11. Saturação: NVIDIA pelo driver; Intel e AMD quando o driver aceita; nas demais, pelo efeito de cor do Windows, que pode não aparecer em jogo em tela cheia exclusiva.

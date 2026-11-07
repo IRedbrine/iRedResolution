@@ -62,12 +62,6 @@ Mostra FPS, 1% low, travadas e gargalo usando o PresentMon da Intel. Só libera 
 
 Iniciar com o Windows (opcional), bandeja do sistema, presets de jogos e tutorial de escala para NVIDIA, AMD e Intel.
 
-## Apoie o projeto
-
-O iRedResolution é gratuito e sem anúncios. Quem quiser ajudar pode doar via PIX / LivePix, pelo QR code do programa ou pelo botão que abre a página.
-
-Link direto: `widget.livepix.gg/embed/ecc5b854-5173-431c-a590-955cecdd2966`
-
 ## Não é hack nem cheat
 
 **Não quer burlar nada:** nem Gamers Club, nem VAC, nem CS2, nem qualquer anti-cheat.
@@ -84,7 +78,7 @@ A compilação falha se o nosso código usar funções de acesso à memória ou 
 
 ## Antivírus
 
-O executável não tem assinatura digital paga, então o Windows pode mostrar o SmartScreen. Um antivírus também pode reclamar. Pode ser falso positivo, mas confira antes: baixe só da página oficial e compare o SHA-256 da aba **INTEGRIDADE**. A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças, em 06/11/2026; isso não garante o resultado em outros antivírus.
+O executável não é assinado digitalmente, então o Windows pode mostrar o SmartScreen. Um antivírus também pode reclamar. Pode ser falso positivo, mas confira antes: baixe só da página oficial e compare o SHA-256 da aba **INTEGRIDADE**. A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças, em 06/11/2026; isso não garante o resultado em outros antivírus.
 
 ## Requisitos
 

@@ -139,8 +139,6 @@ Fechar no X manda o app para a bandeja. Para sair de vez: botão direito no íco
 
 ## O iRedResolution não é hack nem cheat
 
-<img src="docs/02-ajuda.png" width="420" align="right" alt="Aviso legal">
-
 **Não quer burlar nada:** nem Gamers Club, nem VAC, nem CS2, nem qualquer anti-cheat.
 
 - **NÃO** dá vantagem em jogo: sem aimbot, wallhack ou trainer
@@ -155,13 +153,11 @@ O que ele altera, sempre fora do jogo: a resolução, os ajustes do Windows que 
 
 **Nenhum anti-cheat certifica este programa, e cada plataforma tem as próprias regras.** O uso é por sua conta e risco.
 
-<br clear="right">
-
 ---
 
 ## Antivírus e SmartScreen
 
-O executável **não tem assinatura digital paga**, então o Windows pode mostrar *"O Windows protegeu o computador"*. Isso indica que o arquivo é novo e sem editor verificado. Para executar: **Mais informações → Executar assim mesmo**.
+O executável **não é assinado digitalmente**, então o Windows pode mostrar *"O Windows protegeu o computador"*. Isso indica que o arquivo é novo e sem editor verificado. Para executar: **Mais informações → Executar assim mesmo**.
 
 Um antivírus pode reclamar, porque o app não é assinado, traz outro executável embutido e altera configurações. Pode ser falso positivo, mas **confira antes de executar**: baixe só daqui e compare o hash.
 
