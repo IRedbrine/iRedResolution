@@ -1,212 +1,107 @@
 # iRedResolution — documento de referência
 
-> Documento-fonte para o canal `#ired-resolution` no Discord, publicação no
-> site e material de divulgação.
-> Versão 1.0 · Copyright © 2026 iRedHUB / Redbrine.
-
----
+> Base para o canal do Discord, o site e o material de divulgação.
+> Versão 1.2 · Copyright © 2026 iRedHUB / Redbrine.
 
 ## Resumo em uma linha
 
-Utilitário gratuito que troca a resolução do monitor **antes** do jogo abrir e
-restaura ao fechar, eliminando o alt-tab lento do CS2 sem abrir mão da latência
-do modo tela cheia exclusivo — e ainda traz diagnóstico do PC, gerenciador da
-config do CS2 e saturação por jogo.
+Utilitário gratuito que troca a resolução do monitor **antes** do jogo abrir e restaura ao fechar, para reduzir o alt-tab lento do CS2 mantendo a tela cheia exclusiva.
 
----
+## O problema
 
-## O problema que ele resolve
+Quem joga numa resolução diferente da área de trabalho, como 1280x960 num monitor 1920x1080, pode ver **preto → cinza → preto** a cada alt-tab. Em tela cheia exclusiva, o jogo define o modo de vídeo; se ele for diferente do modo da área de trabalho, o monitor pode perder o sinal e sincronizar de novo. No PC usado no desenvolvimento, isso foi visto em vídeo, com cerca de 0,17 s de tela preta por troca.
 
-Quem joga CS2 numa resolução diferente da área de trabalho — o caso clássico é
-4:3 esticado, tipo 1280×960 num monitor 1920×1080 — conhece o sintoma: cada
-alt-tab vira uma sequência de **preto → cinza → preto** que trava tudo por
-vários segundos. Às vezes a tela nem volta.
+## O que o iRedResolution faz
 
-A causa não é bug do CS2. Em tela cheia exclusiva o jogo toma posse do display
-e define o modo de vídeo. Se esse modo for diferente do modo da área de
-trabalho, **cada alt-tab força o Windows a trocar a resolução do sistema
-inteiro** — e a trocar de volta ao retornar. Isso foi confirmado com vídeo: o
-monitor perde sinal e re-sincroniza por cerca de 0,17s a cada troca de foco.
+1. Coloca a área de trabalho na resolução que o jogo vai usar.
+2. Abre o jogo.
+3. Ao fechar o jogo, devolve a resolução anterior.
 
-### A solução convencional, e por que ela não serve
+No PC usado no desenvolvimento, as piscadas sumiram mantendo o modo exclusivo. **O resultado pode variar.** Driver, monitor e programas abertos também influenciam. Programas que reaplicam saturação a cada troca de foco, por exemplo, podem causar piscadas.
 
-A resposta usual da comunidade é "usa tela cheia em janela (borderless)". Isso
-resolve o alt-tab, mas introduz o compositor do Windows no caminho, o que
-adiciona latência de entrada — perceptível para quem joga a sério, e o motivo
-de praticamente todo profissional continuar no exclusivo.
-
-### O que o iRedResolution faz
-
-Inverte a ordem do problema. Em vez de mudar o jogo, ele muda o **desktop**:
-
-1. Coloca a área de trabalho na mesma resolução que o jogo vai usar
-2. Espera o Windows re-enumerar os displays
-3. **Só então** abre o jogo
-4. Monitora o processo e, ao fechar, devolve tudo ao estado anterior
-
-Com desktop e jogo na mesma resolução, não existe troca de modo — o alt-tab fica
-instantâneo **e** você mantém o exclusivo com a latência mínima. Testado no
-mundo real: **zero piscadas, zero travadas**.
-
----
-
-## Tudo que o programa faz
+## Recursos
 
 ### Resolução e alt-tab
 
 | Recurso | O que faz |
 |---|---|
-| **JOGAR** | Troca a resolução do desktop, abre o jogo e restaura ao fechar |
-| **MODO GC** | Aplica a resolução e espera — para GamersClub, FACEIT e outros launchers que abrem o jogo por fora |
-| **Detecção automática** | Vigia os processos e age sozinho, sem clicar em nada |
-| **Seleção de monitor** | Lista todos os displays, marca o principal |
-| **Filtro por proporção** | 4:3, 16:9, 16:10, 5:4 — só as resoluções que interessam |
-| **Taxa de atualização** | Lista os Hz realmente suportados pela resolução escolhida |
-| **Restauração garantida** | O desktop volta mesmo se o app travar ou for morto |
-| **Monitores virtuais** | Detecta Sunshine/Parsec/spacedesk e desativa durante o jogo |
+| **JOGAR** | Troca a resolução, abre o jogo e restaura ao fechar |
+| **MODO GC** | Aplica a resolução e espera, para launchers como GamersClub e FACEIT |
+| **Detecção automática** | Vigia os processos; nesse modo, a resolução só troca depois do jogo abrir |
+| **Monitores** | Lista os monitores e reconhece o escolhido mesmo se o Windows renumerá-los |
+| **Modos reais** | Mostra as resoluções e os Hz informados pelo monitor |
+| **Restauração** | Volta ao fechar o jogo. Se o app ou o PC cair, volta quando o app abrir de novo |
+| **Monitores virtuais** | Detecta Sunshine, Parsec, spacedesk e similares, e pergunta antes de desativá-los no jogo |
 
-### Otimização do PC (botão OTIMIZAR O PC)
+### OTIMIZAR O PC
 
-Analisa vídeo, sistema, rede, hardware e estabilidade, lista o que dá para
-melhorar e deixa **você escolher** o que aplicar — nada é alterado sem marcar.
-Cada item tem um **selo de confiança**:
+Analisa vídeo, sistema, rede, hardware e estabilidade. Nada muda sem você marcar e confirmar, e alguns ajustes pedem administrador.
 
-- **COMPROVADO** — problema documentado, correção conhecida (ex: MPO desligando o alt-tab piscando).
-- **PROVÁVEL** — relatos consistentes, sem prova formal (ex: HAGS, tela cheia exclusiva).
-- **EXPERIMENTAL** — citado em fóruns, sem evidência sólida — vem desmarcado.
-- **INFO** — só reporta, sem correção automática (ex: RAM fora de spec, reinícios do sistema).
+- **COMPROVADO:** mecanismo documentado, com efeito conhecido.
+- **PROVÁVEL:** pode ajudar, mas o ganho não foi medido em toda máquina.
+- **EXPERIMENTAL:** resultado varia ou é incerto; vem desmarcado.
+- **INFO:** só informa, sem correção automática.
 
-Cobre MPO, HAGS, Game DVR, aceleração do mouse, MSI mode da GPU, estado mínimo
-da CPU, e detecta acúmulo de drivers de áudio/antivírus (a causa de travadinha
-por DPC). **Tudo é reversível** pelo botão DESFAZER — inclusive o plano de
-energia.
+Inclui, entre outros, MPO, HAGS, Game DVR, aceleração do mouse, estado mínimo da CPU e prioridade alta do CS2. A prioridade alta não teve ganho medido e é gravada pelo Windows, sem o app tocar no processo do jogo.
 
-### Config de vídeo do CS2 (botão CFG DO CS2)
+O botão **DESFAZER** reverte todos os ajustes aplicados. O ajuste de MSI é experimental e pode causar tela preta em placa ou driver incompatível; nesse caso, entre no Modo de Segurança e rode `iRedResolution.exe --desfazer`.
 
-Encontra o Steam e **todos os perfis** com CS2 instalado, e grava o
-`cs2_video.txt` em todos de uma vez — útil para quem tem mais de uma conta.
-Serve para as opções que **o menu do jogo não mostra**, como
-`fullscreen_min_on_focus_loss`. Faz backup do original antes, trava o arquivo
-como somente-leitura (o CS2 reescreve ao sair) e tem **RESTAURAR ORIGINAL** que
-devolve tudo, inclusive o cadeado.
+### CFG DO CS2
+
+Edita o `cs2_video.txt` dos perfis marcados. Só a conta Steam em uso vem marcada, as resoluções vêm do monitor e o original é guardado antes de gravar. A trava de somente leitura é opcional, e **RESTAURAR ORIGINAL** devolve o arquivo.
 
 ### Saturação por jogo
 
-Aumenta a saturação (Digital Vibrance da NVIDIA) **só enquanto o jogo está em
-foco** — ao dar alt-tab, a área de trabalho volta ao normal na hora. Cada jogo
-guarda o seu nível (CS2 e Valorant não dividem o mesmo), e por padrão mexe só no
-monitor do jogo, com opção de aplicar em todos. Aposenta o VibranceGUI.
+Usa o Digital Vibrance da NVIDIA enquanto o jogo está em foco. Em outras placas, a opção fica desativada. Limitações: com o recurso ligado, a abertura do app volta os monitores ao padrão do driver, e seguir o foco pode causar piscada no alt-tab em alguns PCs.
+
+### MEDIR FPS
+
+Mostra FPS, 1% low, travadas e gargalo usando o PresentMon da Intel. Só libera com o CS2 aberto pelo botão **ABRIR CS2 OFFLINE**, que usa `-insecure` e desliga o VAC naquela sessão, e com o Gamers Club Anti-Cheat fechado.
 
 ### Conveniências
 
-- **Iniciar com o Windows** (na bandeja), sem precisar criar atalho na mão.
-- **Bandeja do sistema** — roda discreto ao lado do relógio.
-- **Presets de jogos** — CS2, Valorant, Apex, Dota 2, TF2, Rocket League e personalizado.
-- **Tutorial de escala** — passo a passo por fabricante (NVIDIA, AMD, Intel), com botão que abre o painel.
-- **Portátil** — um único .exe, sem instalação, sem dependências.
+Iniciar com o Windows (opcional), bandeja do sistema, presets de jogos e tutorial de escala para NVIDIA, AMD e Intel.
 
----
+## Apoie o projeto
 
-## Apoie o projeto (botão APOIAR O PROJETO)
-
-O iRedResolution é **gratuito e sem anúncios**. Quem quiser ajudar a manter o
-projeto vivo pode doar via **PIX / LivePix**:
-
-- Um **QR code** embutido no programa (funciona offline e para mostrar em live).
-- Um botão que abre a página de doação no navegador.
+O iRedResolution é gratuito e sem anúncios. Quem quiser ajudar pode doar via PIX / LivePix, pelo QR code do programa ou pelo botão que abre a página.
 
 Link direto: `widget.livepix.gg/embed/ecc5b854-5173-431c-a590-955cecdd2966`
 
-Não pode doar? Divulgar para a galera do CS2, deixar estrela no GitHub, seguir
-os canais e reportar bugs no Discord ajuda tanto quanto.
+## Não é hack nem cheat
 
----
+**Não quer burlar nada:** nem Gamers Club, nem VAC, nem CS2, nem qualquer anti-cheat.
 
-## Este software NÃO é um cheat
+- **NÃO** dá vantagem em jogo.
+- **NÃO** injeta código nem lê ou escreve na memória do jogo.
+- **NÃO** intercepta a rede ou o tráfego do jogo.
+- **NÃO** instala driver ou serviço.
+- **NÃO** coleta dados seus.
 
-Vale deixar explícito, porque é um utilitário para jogos:
+A compilação falha se o nosso código usar funções de acesso à memória ou ao processo de outro programa. O PresentMon é uma ferramenta externa e pode consultar processos; por isso, só roda em teste offline.
 
-- **NÃO** é cheat, hack, trainer, aimbot ou vantagem competitiva.
-- **NÃO** lê, escreve nem injeta nada na memória de outros processos.
-- **NÃO** altera arquivos de jogo (só o `cs2_video.txt`, que é config, com backup).
-- **NÃO** intercepta rede, não coleta dados, não tem telemetria.
-- **NÃO** pede administrador para rodar (só sob demanda, para ajustes de registro).
+**Nenhum anti-cheat certifica este programa, e cada plataforma tem as próprias regras.** O uso é por sua conta e risco. Detalhes em `AUDITORIA-SEGURANCA.md`.
 
-Usa exclusivamente APIs públicas e documentadas do Windows
-(`ChangeDisplaySettingsEx`, `EnumDisplaySettings`, `SetWinEventHook` sem injeção)
-e a NVAPI oficial da NVIDIA para a saturação.
+## Antivírus
 
-Passou por **auditoria de segurança** (ver `AUDITORIA-SEGURANCA.md`): nenhuma
-API de injeção, URLs todas fixas, verificado limpo contra o Microsoft Defender.
-Por não tocar no jogo, é compatível com **VAC, FACEIT, ESEA e Vanguard**.
-
----
-
-## Sobre alertas de antivírus
-
-O executável **não tem assinatura digital paga** (certificado de code signing é
-caro e cobrado por ano). Por isso o Windows pode exibir *"O Windows protegeu o
-computador"* (SmartScreen). Isso **não indica vírus** — só que o arquivo é novo
-e não tem editor verificado. Para executar: **Mais informações → Executar assim
-mesmo**.
-
-O app calcula e exibe o **SHA-256 de si mesmo** na aba INTEGRIDADE, para
-qualquer um conferir que o arquivo não foi modificado.
-
----
+O executável não tem assinatura digital paga, então o Windows pode mostrar o SmartScreen. Um antivírus também pode reclamar. Pode ser falso positivo, mas confira antes: baixe só da página oficial e compare o SHA-256 da aba **INTEGRIDADE**. A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças, em 06/11/2026; isso não garante o resultado em outros antivírus.
 
 ## Requisitos
 
-- Windows 7 ou superior (testado em Windows 10 e 11).
-- .NET Framework 4.0+ — já presente em qualquer Windows moderno.
-- Saturação: placa **NVIDIA** (o recurso aparece desabilitado em outras).
-- Nenhuma instalação: arquivo único, portátil, roda de pendrive.
-
-Preferências ficam em `%AppData%\iRedResolution`. Nada é gravado fora dali além
-dos ajustes que você escolhe aplicar (todos reversíveis).
-
----
-
-## Como usar (o básico)
-
-1. Abra o `iRedResolution.exe`.
-2. Escolha o monitor, a proporção, a resolução e os Hz.
-3. Confira o comando do jogo e o nome do processo (já vem pronto para CS2).
-4. Clique em **JOGAR** — ou em **MODO GC** se for jogar pela GamersClub.
-
-Fechar no X manda para a bandeja; para sair de vez, botão direito no ícone → Sair.
-
----
+- Windows de 64 bits. Testado no Windows 11; esta versão ainda não foi testada no Windows 10.
+- .NET Framework 4.x, que já vem no Windows 10 e 11.
+- Saturação: placa NVIDIA.
 
 ## Detalhes técnicos
 
-- **Linguagem:** C# / .NET Framework 4.x, WinForms, controles desenhados à mão.
-- **Tamanho:** ~477 KB, arquivo único, sem dependências externas.
-- **APIs:** `ChangeDisplaySettingsEx`, `EnumDisplaySettings`, `EnumDisplayDevices`,
-  `SetWinEventHook` (sem injeção), NVAPI (Digital Vibrance), `powercfg`.
-- **Reversibilidade:** registro (por chave), plano de energia (powercfg),
-  `cs2_video.txt` (backup) — tudo desfazível.
-
----
+- **Linguagem:** C# / .NET Framework, WinForms.
+- **Tamanho:** cerca de 1,5 MB, arquivo único, com o PresentMon embutido.
+- **APIs principais:** `ChangeDisplaySettingsEx`, `EnumDisplaySettings`, `EnumDisplayDevices`, `SetWinEventHook` fora de contexto e NVAPI.
 
 ## Comunidade
 
-| | |
-|---|---|
-| Site | [iredhub.com](https://iredhub.com) |
-| Twitch | [twitch.tv/iRedbrine](https://twitch.tv/iRedbrine) |
-| YouTube | [youtube.com/@Redbrine](https://youtube.com/@Redbrine) |
-| Discord | [discord.gg/DQ8TzaFGtd](https://discord.gg/DQ8TzaFGtd) |
-| Kick | [kick.com/iRedbrine](https://kick.com/iRedbrine) |
-| TikTok | [tiktok.com/@iRedbrine](https://tiktok.com/@iRedbrine) |
-| Instagram | [instagram.com/iRedbrine](https://instagram.com/iRedbrine) |
-| X | [x.com/Red_Brine](https://x.com/Red_Brine) |
-| Steam | [steamcommunity.com/id/iRedbrine](https://steamcommunity.com/id/iRedbrine) |
-
----
+[Site](https://iredhub.com) · [Twitch](https://twitch.tv/iRedbrine) · [YouTube](https://youtube.com/@Redbrine) · [Discord](https://discord.gg/DQ8TzaFGtd) · [Kick](https://kick.com/iRedbrine) · [TikTok](https://tiktok.com/@iRedbrine) · [Instagram](https://instagram.com/iRedbrine) · [X](https://x.com/Red_Brine) · [Steam](https://steamcommunity.com/id/iRedbrine)
 
 ## Licença
 
-Copyright © 2026 iRedHUB / Redbrine. Todos os direitos reservados.
-Software proprietário — ver `LICENCA.txt`. Fornecido no estado em que se
-encontra, sem garantias. O uso é por sua conta e risco.
+Copyright © 2026 iRedHUB / Redbrine. Todos os direitos reservados. O PresentMon é da Intel, sob licença MIT, incluída no programa. Fornecido no estado em que se encontra, sem garantias. O uso é por sua conta e risco.

@@ -4,16 +4,15 @@
 
 # iRedResolution
 
-**Acabe com o alt-tab lento do CS2 — sem trocar para tela cheia em janela.**
+**Reduza o alt-tab lento do CS2 mantendo a tela cheia exclusiva.**
 
 Troca a resolução do monitor *antes* do jogo abrir e restaura ao fechar.
-Alt-tab instantâneo mantendo a latência do modo exclusivo.
 
 [![Download](https://img.shields.io/badge/Download-iRedResolution.exe-FF2325?style=for-the-badge)](../../releases/latest)
-[![Windows](https://img.shields.io/badge/Windows-7%20a%2011-1E1E1E?style=for-the-badge&logo=windows)](#requisitos)
+[![Windows](https://img.shields.io/badge/Windows-10%20e%2011%20(64%20bits)-1E1E1E?style=for-the-badge&logo=windows)](#requisitos)
 [![Discord](https://img.shields.io/badge/Discord-Comunidade-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/DQ8TzaFGtd)
 
-*390 KB · arquivo único · sem instalação · sem dependências*
+*1,8 MB · arquivo único · sem instalação*
 
 <img src="docs/01-principal.png" width="380" alt="Janela principal">
 
@@ -23,33 +22,21 @@ Alt-tab instantâneo mantendo a latência do modo exclusivo.
 
 ## O problema
 
-Se você joga CS2 numa resolução diferente da área de trabalho — 4:3 esticado,
-por exemplo — conhece o sintoma: cada alt-tab vira **preto → cinza → preto** e
-trava tudo por segundos. Às vezes a tela nem volta.
+Se você joga CS2 numa resolução diferente da área de trabalho, como 4:3 esticado, pode conhecer o sintoma: cada alt-tab vira **preto → cinza → preto** e demora.
 
-Não é bug do jogo. Em tela cheia exclusiva, o CS2 toma posse do display e define
-o modo de vídeo. Se esse modo for diferente do modo do desktop, **cada alt-tab
-força o Windows a trocar a resolução do sistema inteiro** — e a trocar de volta
-ao retornar.
-
-A resposta usual é *"usa borderless"*. Resolve o alt-tab, mas coloca o
-compositor do Windows no caminho e **adiciona latência de entrada**. É por isso
-que praticamente todo profissional continua no exclusivo.
+Em tela cheia exclusiva, o jogo define o modo de vídeo. Se esse modo for diferente do modo da área de trabalho, o monitor pode perder o sinal e sincronizar de novo a cada troca.
 
 ## A solução
 
-O iRedResolution inverte o problema. Em vez de mudar o jogo, muda o **desktop**:
+Em vez de mudar o jogo, o iRedResolution muda a **área de trabalho**:
 
 ```
-1. desktop  ->  resolução do jogo
-2. aguarda o Windows re-enumerar os displays
-3. abre o jogo          <- só agora
-4. ao fechar            ->  restaura tudo
+1. área de trabalho  ->  resolução do jogo
+2. abre o jogo
+3. ao fechar o jogo  ->  restaura a resolução
 ```
 
-Desktop e jogo na mesma resolução significa **zero troca de modo**. Alt-tab
-instantâneo *e* latência mínima do exclusivo. Não é um meio-termo — são as duas
-vantagens juntas.
+Com área de trabalho e jogo na mesma resolução, não há troca de modo no alt-tab. No PC usado no desenvolvimento, as piscadas sumiram mantendo o modo exclusivo. **O resultado pode variar:** driver, monitor e programas abertos também influenciam. Programas que reaplicam saturação a cada troca de foco, por exemplo, podem causar piscadas.
 
 ---
 
@@ -57,71 +44,80 @@ vantagens juntas.
 
 | | |
 |---|---|
-| **Ordem correta** | Troca a resolução antes de lançar, que é o ponto central |
-| **MODO GC** | Aplica a resolução e espera — para GamersClub, FACEIT e outros launchers |
-| **Detecção automática** | Vigia os processos e age sozinho |
-| **Multi-monitor** | Lista todos os displays, marca o principal |
-| **Filtro por proporção** | 4:3, 16:9, 16:10, 5:4 |
-| **Taxa de atualização** | Só os Hz realmente suportados pela resolução escolhida |
-| **Restauração garantida** | O desktop volta mesmo se o app for morto |
-| **Monitores virtuais** | Detecta Sunshine/Parsec/spacedesk e desativa durante o jogo |
-| **Bandeja do sistema** | Discreto ao lado do relógio |
-| **Presets** | CS2, Valorant, Apex, Dota 2, TF2, Rocket League, personalizado |
-| **Tutorial embutido** | Escala da GPU passo a passo, por fabricante |
-| **Portátil** | Um .exe. Roda de pendrive. Nada no registro. |
+| **JOGAR** | Troca a resolução, abre o jogo e restaura ao fechar |
+| **MODO GC** | Aplica a resolução e espera o seu play no GCLauncher, na FACEIT ou em outros launchers |
+| **Perfis por jogo** | Cada jogo lembra a própria proporção, resolução e Hz |
+| **Detecção automática** | Vigia os processos listados; nesse modo, a resolução só troca depois do jogo abrir |
+| **Vários monitores** | Lista os monitores e reconhece o escolhido mesmo se o Windows renumerá-los |
+| **Modos reais** | Mostra as resoluções e os Hz que o monitor informa ao Windows |
+| **Restauração** | Volta ao fechar o jogo. Se o app ou o PC cair antes disso, volta quando o app abrir de novo |
+| **Monitores virtuais** | Detecta Sunshine, Parsec, spacedesk e similares, e pergunta antes de desativá-los durante o jogo |
+| **OTIMIZAR O PC** | Diagnóstico com selo de confiança; você escolhe o que aplicar |
+| **CFG DO CS2** | Edita o `cs2_video.txt` dos perfis marcados, com backup |
+| **Saturação por jogo** | Digital Vibrance na NVIDIA; em Intel e AMD, pelo controle do driver quando ele aceita; nas demais, pelo efeito de cor do Windows (vale para todas as telas e pode não aparecer em jogo em tela cheia exclusiva). Restaura ao fechar o jogo |
+| **MEDIR FPS** | FPS, 1% low e gargalo, só em teste offline |
+| **Presets** | CS2, Valorant, Apex, Dota 2, TF2, Rocket League e personalizado |
 
-## MODO GC — quando o launcher é de outra pessoa
+## MODO GC
 
-GamersClub e FACEIT têm anticheat e launcher próprios: o botão "Jogar" fica no
-site deles. O iRedResolution não pode abrir o jogo — e só reagir quando o
-processo aparece não adianta, porque a troca de resolução precisa acontecer
-**antes** do jogo subir.
-
-O **MODO GC** inverte o controle:
+GCLauncher e FACEIT abrem o jogo pelo próprio launcher. Como a resolução precisa trocar **antes**, o processo fica assim:
 
 ```
-1. clique em MODO GC     ->  resolução aplicada agora
-2. o programa espera         (não abre nada, fica na bandeja)
-3. clique em Jogar na GC     (normal, como sempre)
-4. ao fechar o CS2       ->  resolução restaurada sozinha
+1. clique em MODO GC     ->  resolução aplicada
+2. o programa espera na bandeja
+3. clique em Jogar no launcher, como sempre
+4. ao fechar o CS2       ->  resolução restaurada
 ```
 
-Manual na abertura, automático no fechamento. Se desistir, o botão vira
-CANCELAR; e após 15 minutos sem o jogo abrir, restaura por conta própria.
+Se desistir, o botão vira CANCELAR. Após 15 minutos sem o jogo abrir, a resolução volta sozinha.
 
-Para quem prefere que seja **tudo** automático, existe a opção *Detectar o jogo
-automaticamente*: o programa vigia os processos listados e age sozinho — mas
-nesse caso a resolução só troca depois do jogo já ter aberto.
+## OTIMIZAR O PC
 
-### Monitores virtuais
+<div align="center">
+<img src="docs/06-diagnostico.png" width="560" alt="Diagnóstico do sistema">
+</div>
 
-Drivers como **Sunshine**, **Parsec**, **SudoMaker** e **spacedesk** criam
-displays que o Windows trata como reais. Cada troca de resolução obriga o
-sistema a re-enumerar todos eles — a maior causa isolada de alt-tab lento em
-quem faz streaming local.
+Nada muda sem você marcar e confirmar. Alguns ajustes pedem administrador (UAC).
 
-O app identifica esses displays, avisa, e com sua autorização os **desanexa**
-enquanto o jogo roda, reanexando ao fechar. Não mexe no driver, não desinstala
-nada, não pede administrador.
+| Selo | O que significa |
+|---|---|
+| **COMPROVADO** | Mecanismo documentado, com efeito conhecido |
+| **PROVÁVEL** | Pode ajudar, mas o ganho não foi medido em toda máquina |
+| **EXPERIMENTAL** | Resultado varia ou é incerto; vem desmarcado |
+| **INFO** | Só informa, sem correção automática |
+
+Inclui, entre outros, MPO, HAGS, Game DVR, aceleração do mouse, estado mínimo da CPU e prioridade alta do CS2. **A prioridade alta não teve ganho medido** e é gravada pelo Windows (`Image File Execution Options`), sem o app tocar no processo do jogo. Se o áudio falhar ou surgirem travadas, use o **DESFAZER**.
+
+O DESFAZER reverte todos os ajustes aplicados. O ajuste de MSI é experimental e só vale depois de reiniciar: em placa ou driver incompatível pode causar tela preta ao iniciar. Nesse caso, entre no Modo de Segurança e rode `iRedResolution.exe --desfazer`.
+
+## CFG DO CS2
+
+<div align="center">
+<img src="docs/07-cfg.png" width="560" alt="Configuração de vídeo do CS2">
+</div>
+
+Serve para opções que o menu do jogo não mostra. Só marca a conta Steam em uso, oferece as resoluções do seu monitor e guarda o original antes de gravar. A trava de somente leitura é opcional.
+
+## MEDIR FPS: só em teste offline
+
+<div align="center">
+<img src="docs/09-medir-fps.png" width="500" alt="Medidor de desempenho">
+</div>
+
+O medidor usa o [PresentMon](https://github.com/GameTechDev/PresentMon) da Intel, um programa à parte que observa o sistema. Para manter a regra deste projeto, ele só libera quando:
+
+- o CS2 foi aberto pelo botão **ABRIR CS2 OFFLINE**, que usa `-insecure` naquela sessão e **desliga o VAC**;
+- o Gamers Club Anti-Cheat está fechado.
+
+Sem o VAC, você não entra em servidores seguros. A liberação acaba quando o CS2 fecha.
 
 ---
 
 ## Requisito: escala pela GPU
 
-> **Leia isto se for usar resolução menor que a nativa do monitor.**
+> **Leia se for usar resolução menor que a nativa do monitor.**
 
-Sem a escala configurada, uma resolução menor aparece pequena no centro da tela
-com tarjas pretas em volta. É configuração do driver de vídeo, não do programa.
-
-**NVIDIA** — botão direito na área de trabalho → Painel de Controle NVIDIA →
-Monitor → *Ajustar o tamanho e a posição da área de trabalho*
-
-- Escala: **Tela inteira**
-- Executar escala em: **GPU**
-- Marcar **Substituir o modo de escala definido por jogos e programas**
-
-O app traz o tutorial completo (NVIDIA, AMD e Intel) com botão que abre o painel
-do fabricante direto:
+Sem isso, a imagem pode ficar pequena no centro da tela, com tarjas pretas. É uma configuração do driver, e o app traz o passo a passo para NVIDIA, AMD e Intel.
 
 <div align="center">
 <img src="docs/05-tutorial-escala.png" width="440" alt="Tutorial da escala">
@@ -131,66 +127,53 @@ do fabricante direto:
 
 ## Como usar
 
-1. Baixe o `iRedResolution.exe` em [Releases](../../releases/latest)
-2. Execute — não precisa instalar
-3. Escolha monitor, proporção, resolução e Hz
-4. Confira o comando do jogo e o nome do processo (já vem pronto para CS2)
-5. Clique em **JOGAR** — ou em **MODO GC**, se for jogar pela GamersClub
+1. Baixe o `iRedResolution.exe` em [Releases](../../releases/latest).
+2. Execute. Não precisa instalar.
+3. Escolha monitor, proporção, resolução e Hz.
+4. Confira o comando do jogo e o processo. O CS2 já vem pronto.
+5. Clique em **JOGAR** ou, pelo GCLauncher, em **MODO GC**.
 
-Fechar no X manda para a bandeja. Para sair de vez: botão direito no ícone → Sair.
+Fechar no X manda o app para a bandeja. Para sair de vez: botão direito no ícone → **Sair**.
 
 ---
 
-## Este software NÃO é um cheat
+## O iRedResolution não é hack nem cheat
 
 <img src="docs/02-ajuda.png" width="420" align="right" alt="Aviso legal">
 
-- **NÃO** é cheat, hack, trainer ou aimbot
-- **NÃO** lê, escreve nem injeta em memória de outros processos
-- **NÃO** altera arquivos de jogo
-- **NÃO** intercepta rede
-- **NÃO** instala serviço ou driver
-- **NÃO** pede administrador
-- **NÃO** coleta dados
+**Não quer burlar nada:** nem Gamers Club, nem VAC, nem CS2, nem qualquer anti-cheat.
 
-Usa exclusivamente APIs públicas de vídeo do Windows
-(`ChangeDisplaySettingsEx`, `EnumDisplaySettings`, `EnumDisplayDevices`) — as
-mesmas da tela de Configurações do Windows — e inicia o jogo pelo atalho normal
-do sistema.
+- **NÃO** dá vantagem em jogo: sem aimbot, wallhack ou trainer
+- **NÃO** injeta código nem lê ou escreve na memória do jogo
+- **NÃO** intercepta a rede ou o tráfego do jogo
+- **NÃO** instala driver ou serviço
+- **NÃO** coleta dados seus
 
-Compatível com **VAC, FACEIT, ESEA e Vanguard**, por não tocar em nada
-relacionado ao jogo.
+O projeto tem uma trava: a compilação falha se o nosso código usar funções de acesso à memória ou ao processo de outro programa, como `OpenProcess` e `ReadProcessMemory`. O PresentMon é uma ferramenta externa e pode consultar processos; por isso, só roda em teste offline.
+
+O que ele altera, sempre fora do jogo: a resolução, os ajustes do Windows que você aplicar e, se você pedir, o `cs2_video.txt`.
+
+**Nenhum anti-cheat certifica este programa, e cada plataforma tem as próprias regras.** O uso é por sua conta e risco.
 
 <br clear="right">
 
 ---
 
-## Alerta de antivírus / SmartScreen
+## Antivírus e SmartScreen
 
-O executável **não tem assinatura digital paga** (certificado de code signing é
-caro e cobrado por ano). O Windows pode exibir *"O Windows protegeu o
-computador"*.
+O executável **não tem assinatura digital paga**, então o Windows pode mostrar *"O Windows protegeu o computador"*. Isso indica que o arquivo é novo e sem editor verificado. Para executar: **Mais informações → Executar assim mesmo**.
 
-Isso **não indica vírus** — indica apenas que o arquivo é novo e não tem editor
-verificado. Clique em **Mais informações → Executar assim mesmo**.
+Um antivírus pode reclamar, porque o app não é assinado, traz outro executável embutido e altera configurações. Pode ser falso positivo, mas **confira antes de executar**: baixe só daqui e compare o hash.
 
-O que foi feito para reduzir falso-positivo:
+A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças, em 06/11/2026. Isso não garante o resultado em outros antivírus.
 
-- Manifesto `asInvoker` — não pede elevação (pedir admin sem necessidade é um
-  dos maiores gatilhos de alerta)
-- Metadados completos de versão, produto e direitos
-- Nenhuma escrita em pastas de sistema ou no registro
-- Verificado contra o Microsoft Defender: **limpo**
+### Conferindo o arquivo
 
-### Verificando a integridade
-
-O app calcula e exibe o **SHA-256 de si mesmo**, com botão de copiar:
+O app mostra o próprio SHA-256 na aba **INTEGRIDADE**. Compare com o hash publicado na release:
 
 <div align="center">
-<img src="docs/02-ajuda.png" width="440" alt="Aba de integridade">
+<img src="docs/03-integridade.png" width="440" alt="Aba de integridade">
 </div>
-
-Compare com o hash publicado na release. Ou confira por conta própria:
 
 ```powershell
 Get-FileHash .\iRedResolution.exe -Algorithm SHA256
@@ -200,32 +183,20 @@ Get-FileHash .\iRedResolution.exe -Algorithm SHA256
 
 ## Requisitos
 
-- Windows 7 ou superior (testado em Windows 10 e 11)
-- .NET Framework 4.0+ — já presente em qualquer Windows moderno
+- Windows de 64 bits. Testado no Windows 11; esta versão ainda não foi testada no Windows 10
+- .NET Framework 4.x, que já vem no Windows 10 e 11
+- Saturação: testada na NVIDIA. Em Intel e AMD depende do driver aceitar o controle, e a reserva pelo Windows pode não aparecer em tela cheia exclusiva. Sem nenhuma opção, a saturação fica desativada
 
-Preferências em `%AppData%\iRedResolution\config.ini`. Nada no registro.
+## O que fica no seu PC
 
----
-
-## Compilando
-
-Não precisa de Visual Studio — o compilador C# já vem no Windows:
-
-```powershell
-$csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
-& $csc -target:winexe -optimize+ -nowarn:0108 `
-  -out:iRedResolution.exe -win32icon:src\app.ico -win32manifest:src\app.manifest `
-  -resource:src\logo.png,logo.png -resource:src\app.ico,app.ico -resource:src\discord.png,discord.png `
-  -reference:System.dll -reference:System.Drawing.dll -reference:System.Windows.Forms.dll -reference:System.Core.dll `
-  src\CS2Launcher.cs src\Gui.cs src\Scaling.cs src\About.cs src\AssemblyInfo.cs
-```
-
-| Arquivo | Responsabilidade |
+| Onde | O quê |
 |---|---|
-| `CS2Launcher.cs` | P/Invoke de display, enumeração de modos, persistência |
-| `Gui.cs` | Janela principal, bandeja, MODO GC, detecção de virtuais |
-| `Scaling.cs` | Tutorial da escala por fabricante |
-| `About.cs` | Ajuda, aviso legal, hash próprio, links |
+| `%AppData%\iRedResolution` | Preferências, logs, histórico de medição e backups do CFG |
+| `%LocalAppData%\iRedResolution\tools` | PresentMon, extraído quando você usa o medidor |
+| Registro (HKCU `Run`) | Só se você ligar *Iniciar com o Windows* |
+| Registro e energia | Só os ajustes que você aplicar no OTIMIZAR O PC |
+| `cs2_video.txt` | Só se você aplicar pelo CFG DO CS2 |
+| Grupo "Usuários de log de desempenho" | Só se você clicar em *Permitir sem admin* no medidor |
 
 ---
 
@@ -245,7 +216,8 @@ $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 
 ## Licença
 
-Copyright © 2026 iRedHUB / Redbrine. Todos os direitos reservados.
+Copyright © 2026 iRedHUB / Redbrine. Todos os direitos reservados. Veja `LICENSE.txt`.
 
-Fornecido no estado em que se encontra, sem garantias de qualquer natureza.
-O uso é por sua conta e risco.
+O PresentMon é da Intel, sob licença MIT, incluída no programa. A fonte dos títulos é derivada da Orbitron, sob a SIL Open Font License, também incluída no programa.
+
+Fornecido no estado em que se encontra, sem garantias de qualquer natureza. O uso é por sua conta e risco.

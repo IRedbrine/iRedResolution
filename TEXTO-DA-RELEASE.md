@@ -12,8 +12,8 @@ alt-tab instantâneo mantendo a latência do modo exclusivo.
 - Iniciar com o Windows, bandeja, presets de jogos
 
 ### Não é cheat
-Não lê memória, não injeta, não toca no jogo. Compatível com VAC, FACEIT, ESEA e Vanguard.
-Passou por auditoria de segurança (veja docs/AUDITORIA-SEGURANCA.md).
+Não lê memória e não injeta código. Nenhum anti-cheat certifica este programa, e cada plataforma tem as próprias regras.
+Veja a revisão de segurança em docs/AUDITORIA-SEGURANCA.md.
 
 ### Segurança do download
 Confira que o arquivo não foi adulterado — o hash abaixo é o mesmo que o app mostra na aba INTEGRIDADE:
