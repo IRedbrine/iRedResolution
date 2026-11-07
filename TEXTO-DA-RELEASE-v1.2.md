@@ -31,7 +31,7 @@ O hash abaixo é o mesmo que o app mostra na aba INTEGRIDADE:
 
 SHA-256: b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d
 
-Análise no VirusTotal: PREENCHER_COM_O_LINK_DO_VIRUSTOTAL
+Análise no VirusTotal (07/11/2026): 1 alerta em 70 mecanismos. Só o Elastic alerta, por heurística; os demais não detectaram nada: https://www.virustotal.com/gui/file/b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d
 
 O Windows pode mostrar "O Windows protegeu o computador", porque o arquivo não tem assinatura paga. Baixe só desta página e confira o hash antes de clicar em "Mais informações" e "Executar assim mesmo".
 

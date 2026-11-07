@@ -165,7 +165,7 @@ O executável **não tem assinatura digital paga**, então o Windows pode mostra
 
 Um antivírus pode reclamar, porque o app não é assinado, traz outro executável embutido e altera configurações. Pode ser falso positivo, mas **confira antes de executar**: baixe só daqui e compare o hash.
 
-A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças, em 06/11/2026. Isso não garante o resultado em outros antivírus.
+A versão 1.2 passou por uma varredura local do Microsoft Defender sem ameaças. No [VirusTotal](https://www.virustotal.com/gui/file/b2eb69814384f8e0c1e71376908b461c7d38decc7f3ae09839be50c35729f03d), em 07/11/2026, **69 dos 70 mecanismos não detectaram nada**; só o Elastic alertou ("Malicious, high confidence"), uma detecção por heurística comum em programas novos, pequenos e sem assinatura. Não conseguimos ver o motivo exato do alerta. Isso não garante o resultado em outros antivírus, e é por isso que o hash está aqui para você conferir.
 
 ### Conferindo o arquivo
 
